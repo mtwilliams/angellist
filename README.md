@@ -7,7 +7,7 @@
 
 :construction: *Work in progress!* :construction:
 
-AngelList client library for Elixir.
+(An opinionated) AngelList client library for Elixir.
 
 ## Why should I use it?
 

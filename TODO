@@ -1,1 +1,9 @@
 - Rewrite defaults into a list comprehension.
+- Pagination.
+- Fix the fuglyness that is decoding.
+- Error handling.
+  - Bang variants.
+- Audit naming scheme and mapping.
+- Missing endpoints. (A lot...)
+- Simplify defaults and options... just manually maintain instead of using magic?
+- Lots more...

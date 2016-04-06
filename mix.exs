@@ -44,6 +44,7 @@ defmodule AngelList.Mixfile do
 
   defp deps do [
     {:httpoison, "~> 0.8"},
+    {:poison, ">= 1.0.0"},
 
     # Testing
     {:excoveralls, "~> 0.4", only: :test},
