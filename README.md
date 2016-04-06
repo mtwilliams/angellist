@@ -66,7 +66,7 @@ iex> IO.inspect AngelList.User.me(client)
       id: 1692,
       url: "http://angel.co/san-francisco",
       term: "san francisco",
-      humanized: "San Francisco""
+      humanized: "San Francisco"
     }
   ],
   roles: [
