@@ -29,11 +29,12 @@ You shouldn't. Not yet.
   end
   ```
 
-  * Run mix deps.get to install.
+  * Run `mix deps.get` to install.
 
   * In you configuration, like `config/config.exs` or `config/prod.exs` set your defaults:
 
   ```elixir
+  # These are not real credentials...
   config :angellist,
     client_id: "df3891820fb53e581399bd6c43bcb3b3e365f795a7ffbc71",
     client_secret: "e2d46dba8cf1e6a758b698d5e97734d9d31a79e640f96b75",
