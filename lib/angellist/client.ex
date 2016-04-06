@@ -18,15 +18,15 @@ defmodule AngelList.Client do
     struct(__MODULE__, Enum.into(fields, %{options: options}))
   end
 
-  defp with_req_headers(client, headers) do
-    Map.merge(%{"Authorization" => client.access_token,
-                "User-Agent"    => client.options[:user_agent],
-                "Content-Type"  => "application/json"}, headers)
+  defp headers(client) do
+    %{"Authorization" => client.access_token,
+      "User-Agent"    => client.options[:user_agent],
+      "Content-Type"  => "application/json"}
   end
 
-  def get!(client, path, headers, params), do: HTTPoison.get!(client.options[:base_url] <> path, with_req_headers(client, headers), params: params)
-  def put!(client, path, headers, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, with_req_headers(client, headers))
-  def post!(client, path, headers, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, with_req_headers(client, headers))
-  def patch!(client, path, headers, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, with_req_headers(client, headers))
-  def delete!(client, path, headers, params), do: HTTPoison.post!(client.options[:base_url] <> path, with_req_headers(client, headers), params: params)
+  def get!(client, path, params), do: HTTPoison.get!(client.options[:base_url] <> path, headers(client), params: params)
+  def put!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, headers(client))
+  def post!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, headers(client))
+  def patch!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, headers(client))
+  def delete!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, headers(client), params: params)
 end
