@@ -6,14 +6,14 @@ defmodule AngelList.Client do
 
   @doc ~S"""
   """
-  def new(overrides \\ []) do
+  def new(options \\ []) do
     fields = Enum.map(~w(client_id client_secret access_token)a, fn field ->
-      value = Keyword.get(overrides, field, Application.get_env(:angellist, field))
+      value = Keyword.get(options, field, Application.get_env(:angellist, field))
       {field, value}
     end)
 
     default_options = Enum.into(AngelList.defaults, %{})
-    options = Enum.into(Keyword.get(overrides, :options, []), default_options)
+    options = Enum.into(Keyword.take(options, AngelList.options), default_options)
 
     struct(__MODULE__, Enum.into(fields, %{options: options}))
   end
@@ -24,9 +24,18 @@ defmodule AngelList.Client do
       "Content-Type"  => "application/json"}
   end
 
+  def get(client, path, params), do: HTTPoison.get(client.options[:base_url] <> path, headers(client), params: params)
   def get!(client, path, params), do: HTTPoison.get!(client.options[:base_url] <> path, headers(client), params: params)
+
+  def put(client, path, params), do: HTTPoison.post(client.options[:base_url] <> path, params, headers(client))
   def put!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, headers(client))
+
+  def post(client, path, params), do: HTTPoison.post(client.options[:base_url] <> path, params, headers(client))
   def post!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, headers(client))
+
+  def patch(client, path, params), do: HTTPoison.post(client.options[:base_url] <> path, params, headers(client))
   def patch!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, params, headers(client))
+
+  def delete(client, path, params), do: HTTPoison.post(client.options[:base_url] <> path, headers(client), params: params)
   def delete!(client, path, params), do: HTTPoison.post!(client.options[:base_url] <> path, headers(client), params: params)
 end

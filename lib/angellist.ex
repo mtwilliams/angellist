@@ -28,5 +28,5 @@ defmodule AngelList do
 
   @doc ~S"""
   """
-  def client(overrides \\ []), do: AngelList.Client.new(overrides)
+  def client(options \\ []), do: AngelList.Client.new(options)
 end
