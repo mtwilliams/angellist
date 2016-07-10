@@ -44,47 +44,41 @@ You shouldn't. Not yet.
 ### Example
 
 ```elixir
-iex> client = AngelList.client
+iex(1)> client = AngelList.Client.new(access_token: "...")
+%AngelList.Client{access_token: "...",
+ client_id: nil, client_secret: nil,
+ options: %{base_url: "https://api.angel.co/", proxy: nil, timeout: 5000,
+   user_agent: "Elixir/1.3.1"}}
 
-iex> IO.inspect AngelList.User.me(client)
-%AngelList.User{
-  id: 155,
-  url: "http://angel.co/naval",
-  image: "https://s3.amazonaws.com/photos.angel.co/users/155-medium?1308634544",
-  name: "Naval Ravikant",
-  bio: "Sweat - AngelList, Venture Hacks, Vast, Epinions; Money - Twitter, Heyzap, SnapLogic",
-  investor: true,
-  followers: 13375,
-  links: %{
-    blog: "http://startupboy.com/",
-    bio: "http://startupboy.com/about/",
-    twitter: "http://twitter.com/naval",
-    facebook: "http://www.facebook.com/navalr",
-    linkedin: "http://www.linkedin.com/in/navalr"
-  },
-  locations: [
-    %AngelList.Location{
-      id: 1692,
-      url: "http://angel.co/san-francisco",
-      term: "san francisco",
-      humanized: "San Francisco"
-    }
-  ],
-  roles: [
-    %AngelList.Role{
-      id: 9305,
-      url: "http://angel.co/seed-funds",
-      term: "seed funds",
-      humanized: "Seed Fund"
-    },
-    %AngelList.Role{
-      id: 14725,
-      url: "http://angel.co/entrepreneur-1",
-      term: "entrepreneur",
-      humanized: "Entrepreneur"
-    }
-  ]
-}
+iex(2)> AngelList.User.get(client, id: 155)
+%AngelList.User{biography: "Sweat: @angellist , @venture-hacks @vast @epinions ;  Money: @twitter @heyzap @uber ",
+ criteria: nil, does: "", done: "", followers: 45504, id: 155, investor: true,
+ links: %{aboutme: nil, behance: nil, blog: "http://startupboy.com/",
+   dribbble: nil, facebook: "http://www.facebook.com/navalr", github: nil,
+   linkedin: "http://www.linkedin.com/in/navalr", resume: nil,
+   twitter: "http://twitter.com/naval",
+   website: "http://startupboy.com/about/"},
+ locations: [%AngelList.LocationTag{id: 1692, name: "san francisco",
+   pretty: "San Francisco", slug: "san-francisco",
+   url: "https://angel.co/san-francisco"}], name: "Naval Ravikant",
+ portrait: "https://d1qb2nb5cznatu.cloudfront.net/users/155-medium_jpg?1462899600",
+ roles: [%AngelList.RoleTag{id: 9305, name: "seed funds", pretty: "Seed Fund",
+   slug: "seed-funds", url: "https://angel.co/seed-funds"},
+  %AngelList.RoleTag{id: 14725, name: "entrepreneur", pretty: "Entrepreneur",
+   slug: "entrepreneur-1", url: "https://angel.co/entrepreneur-1"},
+  %AngelList.RoleTag{id: 9299, name: "advisors", pretty: "Advisor",
+   slug: "advisors", url: "https://angel.co/advisors"},
+  %AngelList.RoleTag{id: 14726, name: "developer", pretty: "Developer",
+   slug: "developer", url: "https://angel.co/developer"}],
+ skills: [%AngelList.SkillTag{id: 23388, name: "c", pretty: "C", slug: "c-2",
+   url: "https://angel.co/c-2"},
+  %AngelList.SkillTag{id: 15592, name: "html", pretty: "HTML", slug: "html",
+   url: "https://angel.co/html"},
+  %AngelList.SkillTag{id: 14781, name: "javascript", pretty: "Javascript",
+   slug: "javascript", url: "https://angel.co/javascript"},
+  %AngelList.SkillTag{id: 14775, name: "python", pretty: "Python",
+   slug: "python", url: "https://angel.co/python"}], slug: "naval",
+ url: "https://angel.co/naval"}
 ```
 
 ## How do I contribute?
